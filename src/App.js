@@ -1,9 +1,9 @@
-
+import LandingPage from "./views/LandingPage"
 
 function App() {
   return (
     <div>
-          Learn React
+          <LandingPage/>
     </div>
   );
 }
