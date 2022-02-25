@@ -225,6 +225,7 @@ const ListingPage = () => {
                     <img
                       src="https://i.ibb.co/vsDPHyk/arrow-up.webp"
                       className="img-footer-arrow"
+                      alt="arrow"
                     />
                     <span className="img-footer-text">
                       6725+ orders placed from here recently
@@ -232,6 +233,7 @@ const ListingPage = () => {
                     <img
                       src="https://i.ibb.co/VWWyMG8/carditem.webp"
                       className="img-footer-delivery"
+                      alt="delivery"
                     />
                   </div>
                 </div>
@@ -269,6 +271,7 @@ const ListingPage = () => {
                     <img
                       src="https://i.ibb.co/vsDPHyk/arrow-up.webp"
                       className="img-footer-arrow"
+                      alt="arrow"
                     />
                     <span className="img-footer-text">
                       1375+ orders placed from here recently
@@ -276,6 +279,7 @@ const ListingPage = () => {
                     <img
                       src="https://i.ibb.co/VWWyMG8/carditem.webp"
                       className="img-footer-delivery"
+                      alt="delivery"
                     />
                   </div>
                 </div>
@@ -313,6 +317,7 @@ const ListingPage = () => {
                     <img
                       src="https://i.ibb.co/vsDPHyk/arrow-up.webp"
                       className="img-footer-arrow"
+                      alt="arrow"
                     />
                     <span className="img-footer-text">
                       1700+ orders placed from here recently
@@ -320,6 +325,7 @@ const ListingPage = () => {
                     <img
                       src="https://i.ibb.co/VWWyMG8/carditem.webp"
                       className="img-footer-delivery"
+                      alt="delivery"
                     />
                   </div>
                 </div>
@@ -357,6 +363,7 @@ const ListingPage = () => {
                     <img
                       src="https://i.ibb.co/vsDPHyk/arrow-up.webp"
                       className="img-footer-arrow"
+                      alt="arrow"
                     />
                     <span className="img-footer-text">
                       1375+ orders placed from here recently
@@ -364,6 +371,7 @@ const ListingPage = () => {
                     <img
                       src="https://i.ibb.co/VWWyMG8/carditem.webp"
                       className="img-footer-delivery"
+                      alt="delivery"
                     />
                   </div>
                 </div>
@@ -401,6 +409,7 @@ const ListingPage = () => {
                     <img
                       src="https://i.ibb.co/vsDPHyk/arrow-up.webp"
                       className="img-footer-arrow"
+                      alt="arrow"
                     />
                     <span className="img-footer-text">
                       1700+ orders placed from here recently
@@ -408,6 +417,7 @@ const ListingPage = () => {
                     <img
                       src="https://i.ibb.co/VWWyMG8/carditem.webp"
                       className="img-footer-delivery"
+                      alt="delivery"
                     />
                   </div>
                 </div>
