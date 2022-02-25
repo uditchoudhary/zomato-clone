@@ -1,4 +1,5 @@
-import "./LandingPage.css"
+import "./LandingPage.css";
+import { Link } from "react-router-dom";
 
 const LandingPage = () => {
   return (
@@ -111,7 +112,7 @@ const LandingPage = () => {
                 </div>
                 <div className="tileComponent2">
                   <div className="componentHeading">
-                    <a href="../listing/listing.html">BreakFast</a>
+                    <Link to="/listing">BreakFast</Link>
                   </div>
                   <div className="componentSubHeading">
                     Enjoy Your BreakFast Meal
@@ -129,7 +130,7 @@ const LandingPage = () => {
                 </div>
                 <div className="tileComponent2">
                   <div className="componentHeading">
-                    <a href="../listing/listing.html">Nightlife</a>
+                    <Link to="/listing">Nightlife</Link>
                   </div>
                   <div className="componentSubHeading">
                     Enjoy Your Nightlife Club
@@ -144,7 +145,7 @@ const LandingPage = () => {
                 </div>
                 <div className="tileComponent2">
                   <div className="componentHeading">
-                    <a href="../listing/listing.html">Dinner</a>
+                    <Link to="/listing">Dinner</Link>
                   </div>
                   <div className="componentSubHeading">
                     Enjoy Your Dinner Meal
@@ -159,7 +160,7 @@ const LandingPage = () => {
                 </div>
                 <div className="tileComponent2">
                   <div className="componentHeading">
-                    <a href="../listing/listing.html">Drinks</a>
+                    <Link to="/listing">Drinks</Link>
                   </div>
                   <div className="componentSubHeading">
                     Enjoy Your Drinks Meal
@@ -174,7 +175,7 @@ const LandingPage = () => {
                 </div>
                 <div className="tileComponent2">
                   <div className="componentHeading">
-                    <a href="../listing/listing.html">BreakFast</a>
+                    <Link to="/listing">BreakFast</Link>
                   </div>
                   <div className="componentSubHeading">
                     Enjoy Your BreakFast Meal
@@ -189,7 +190,7 @@ const LandingPage = () => {
                 </div>
                 <div className="tileComponent2">
                   <div className="componentHeading">
-                    <a href="../listing/listing.html">BreakFast</a>
+                    <Link to="/listing">BreakFast</Link>
                   </div>
                   <div className="componentSubHeading">
                     Enjoy Your BreakFast Meal
