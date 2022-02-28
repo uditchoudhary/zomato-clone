@@ -2,6 +2,11 @@
   font-family: Okra, Helvetica, sans-serif;
 }
 
+.dark-mode {
+  background-color: black;
+  color: white;
+}
+
 .header {
   /* background-image: url("images/food-wallpaper.png"); */
   background: linear-gradient( rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5) ), url("https://i.ibb.co/qRqSb0p/food-wallpaper.png");
