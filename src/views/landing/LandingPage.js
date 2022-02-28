@@ -2,11 +2,6 @@ import "./LandingPage.css";
 import { Link } from "react-router-dom";
 
 const LandingPage = () => {
-  const toggleTheme = () => {
-    var element = document.body;
-    element.classList.toggle("dark-mode");
-    console.log("theme changed");
-  };
   return (
     <>
       <div className="container quick-search">
