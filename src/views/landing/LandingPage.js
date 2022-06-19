@@ -1,7 +1,19 @@
 import "./LandingPage.css";
 import { Link } from "react-router-dom";
+import { useEffect, useState } from "react";
+import { instance as API } from "../../services/axiosConfig";
 
 const LandingPage = () => {
+  const [mealTypes, setMealTypes] = useState();
+  useEffect(() => {
+    API.get("/mealType")
+      .then((res) => {
+        setMealTypes(res.data);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }, []);
   return (
     <>
       <div className="container quick-search">
@@ -13,7 +25,33 @@ const LandingPage = () => {
         </div>
         <div className="row">
           <div className="row row-cols-3">
-            <div className="col">
+            {mealTypes &&
+              mealTypes.map((mealType) => {
+                return (
+                  <div className="col">
+                    <div className="tileContainer">
+                      <div className="tileComponent1">
+                        <img
+                          src={mealType.meal_image}
+                          alt={mealType.mealtype}
+                        />
+                      </div>
+                      <div className="tileComponent2">
+                        <div className="componentHeading">
+                          <Link to="/listing">
+                            {mealType.mealtype}
+                          </Link>
+                        </div>
+                        <div className="componentSubHeading">
+                          {mealType.content}
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                );
+              })}
+
+            {/* <div className="col">
               <div className="tileContainer">
                 <div className="tileComponent1">
                   <img
@@ -108,7 +146,7 @@ const LandingPage = () => {
                   </div>
                 </div>
               </div>
-            </div>
+            </div> */}
           </div>
         </div>
       </div>

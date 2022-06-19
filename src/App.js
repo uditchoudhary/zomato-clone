@@ -7,7 +7,7 @@ function App() {
   return (
     <>
       <BrowserRouter>
-        <FixedHeader/>
+        <FixedHeader />
         <Routes>
           <Route index element={<LandingPage />} />
           <Route path="listing" element={<ListingPage />} />
