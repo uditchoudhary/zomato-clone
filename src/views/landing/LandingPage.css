@@ -37,35 +37,13 @@
   position: relative;
 }
 
-#logo{
-    height:150px;
-    width:150px;
-    background-color: rgba(255, 255, 255,1);
-    border-radius: 50%;
-    margin-top:1%; 
-    /* position: absolute; */
-    font-size:80px;
-    color:#e09c83;
-    animation:revolve 10s infinite;
+.fixed-header_wapper{
+    margin-top: -130px;
 }
 
-@keyframes revolve {
-    0% {transform: rotate(30deg)}
-    25% {transform: rotate(90deg)}
-    50% {transform: rotate(180deg)}
-    75% {transform: rotate(270deg)}
-    100% {transform: rotate(360deg)}
-}
-#logo > span{
-    margin-left: 30%;
-    margin-top:15%;
-    position: absolute;
-}
 
 .heading{
-    /* margin-left:29%;
-    margin-top:14%; */
-    /* position: absolute; */
+    margin-top: 160px;
     color:white;
     font-size:45px;
 }
@@ -85,7 +63,7 @@ select{
 }
 
 .restlist{
-    width:50%  
+    width:30%  
 }
 a{
     text-decoration:none
@@ -102,10 +80,10 @@ a{
     display:block;
     margin-left: 2%;
 }
-
+/* 
 #QuickHeading:hover{
     font-size:35px; 
-}
+} */
 
 #QuickSubHeading{
     line-height: 2;
@@ -116,29 +94,16 @@ a{
 
 .tileContainer{
     height:200px;
-    /* width:30%; */
     float: left;
     margin-top: 2%;
     margin-left: 2%;
-    box-shadow: 10px 20px 10px gray;
-    /* animation: dance 10s infinite */
+    box-shadow: 0px 5px 5px gray;
 }
 
 .tileContainer:hover{
-    /*transform: scale(1.1);
-    transform: skewX(-20deg);
-    transform: rotate(20deg);*/
     transform: scale(1.1)
 }
 
-@keyframes dance{
-    0% {transform: rotate(-5deg)}
-    25% {transform: rotate(0deg)}
-    50% {transform: rotate(5deg)}
-    60% {transform: scale(1.1)}
-    75% {transform: rotate(0deg)}
-    100% {transform: rotate(-5deg)}
-}
 .tileComponent1{
     width:58%;
     float: left;

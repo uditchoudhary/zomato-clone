@@ -8,7 +8,6 @@ const TopHeader = () => {
     themeButton.classList.toggle("btn-dark");
     var restHead = document.getElementById("restaurant-head");
     restHead.classList.toggle("link-dark");
-
   };
   return (
     <nav className="navbar row p-3">
@@ -38,18 +37,14 @@ const TopHeader = () => {
       </div>
       <Link
         className="nav-item col-4 col-xs-6 text-center link-dark link-light"
-        id="restaurant-head"
         to="/"
       >
-        <h3>Edureka Restaurant</h3>
+        <img src="/images/foodgasm-logo.png" alt="logo" className="brand-logo"/>
       </Link>
-      <div
-        className="nav-item col-2 text-start align-items-center"
-        id="profile"
-      >
+      <div className="nav-item col-2 text-end" id="profile">
         <img
           src="https://i.ibb.co/LzKZSJH/profile-photo.jpg"
-          className="rounded float-start"
+          className="rounded"
           alt="profile-pic"
         />
         <span id="user-profile" className="m-2">

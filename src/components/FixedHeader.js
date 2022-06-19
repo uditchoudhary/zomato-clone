@@ -45,21 +45,11 @@ const FixedHeader = () => {
   const handleRestaurants = (event) => {
     let restId = event.target.value;
     console.log(">>>>inside", restId);
-    navigate("/details/restaurant/"+restId);
+    navigate("/details/restaurant/" + restId);
   };
   return (
-    <div className="container-fluid text-white p-0">
+    <div className="container-fluid text-white p-0 fixed-header_wapper">
       <div className="header">
-        
-        <div className="row">
-          <Link to="/">
-            <div className="col d-flex justify-content-center logo-wrapper">
-              <div id="logo">
-                <span>E!</span>
-              </div>
-            </div>
-          </Link>
-        </div>
         <div className="row">
           <div className="col d-flex justify-content-center heading">
             Find The Best Restaurants Near You
@@ -67,14 +57,14 @@ const FixedHeader = () => {
         </div>
         <div className="row">
           <div className="col d-flex justify-content-end dropdown">
-            <select onChange={handleCity}>
-              <option>-----PLEASE SELECT CITY-----</option>
+            <select className="restlist" onChange={handleCity}>
+              <option>Select City</option>
               {renderCity(locations)}
             </select>
           </div>
           <div className="col d-flex justify-content-start dropdown">
             <select className="restlist" onChange={handleRestaurants}>
-              <option>-----PLEASE SELECT RESTAURANTS-----</option>
+              <option>Select Restaurant</option>
               {renderRest(restaurants)}
             </select>
           </div>
