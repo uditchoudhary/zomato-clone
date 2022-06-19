@@ -1,6 +1,35 @@
+import { useEffect, useState } from "react";
+import { useParams, useNavigate } from "react-router-dom";
+import { instance as API } from "../../services/axiosConfig";
 import "./ListingPage.css";
 
 const ListingPage = () => {
+  const param = useParams();
+  const navigate = useNavigate();
+  const [restaurants, setRestaurants] = useState([]);
+  const [pageLoading, setPageLoading] = useState(false);
+  useEffect(() => {
+    const mt_id = param.mealtype_id;
+    setPageLoading(true);
+    API.get(`restaurants?mealtype_id=${mt_id}`)
+      // API.get(`restaurants?mealtype_id=2`)
+      .then((res) => setRestaurants(res.data))
+      .catch((err) => console.log(err));
+    setPageLoading(false);
+  }, []);
+  // getting random number for dummy values
+  const getRandonNumber = (min, max) => {
+    return Math.floor(Math.random() * (max - min)) + min;
+  };
+  const randomDiscount = (min, max) => {
+    return Math.round((Math.random() * (max - min) + min) / 10) * 10;
+  };
+  const handleRestaurants = (restId) => {
+    navigate("/details/restaurant/" + restId);
+  };
+  if (pageLoading) {
+    return <h1>Loadin .... </h1>;
+  }
   return (
     <>
       <div className="container">
@@ -134,293 +163,86 @@ const ListingPage = () => {
           </div>
           <div id="card">
             <div className="listing">
-              <div className="listing-location-heading">
+              {/* <div className="listing-location-heading">
                 Delhi NCR Resturants
-              </div>
+              </div> */}
               <div className=" d-flex flex-wrap justify-content-between">
-                <div className="single-card">
-                  <div className="card-image-wrapper">
-                    <img
-                      src="https://i.ibb.co/PMmb0t9/wat-a-burger.webp"
-                      alt="wat-a-burger"
-                      className="card-image"
-                    />
-                    <div className="card-image-promoted">Promoted</div>
-                    <div className="card-image-pro-discount">
-                      Pro extra 10% OFF
-                    </div>
-                    <div className="card-image-normal-discount">50% OFF</div>
-                    <div className="card-image-delivery-time">37 min</div>
-                  </div>
-                  <div className="card-content">
-                    <div className="card-content-heading">
-                      <div className="card-content-title">
-                        <span className="card-content-text">
-                          Wat-A-Burger - India Ka Burger
-                        </span>
-                        <span className="card-content-rating">
-                          3.8 <i className="fas fa-star"></i>
-                        </span>
-                      </div>
-                    </div>
-                    <div className="card-content-body">
-                      <div className="card-content-subtitle">
-                        Burger, Fast Food, Beverages, Desserts
-                      </div>
-                      <div className="card-content-price">₹150 for one</div>
-                    </div>
-                    <hr />
-                  </div>
+                {console.log(restaurants)}
+                {restaurants.length > 0 &&
+                  restaurants.map((rest) => {
+                    return (
+                      <div
+                        className="single-card"
+                        key={rest.restaurant_id}
+                        onClick={() => handleRestaurants(rest.restaurant_id)}
+                      >
+                        <div className="card-image-wrapper">
+                          <img
+                            src={rest.image_gallery[0]}
+                            alt={rest.restaurant_name}
+                            className="card-image"
+                          />
+                          {rest.restaurant_id < getRandonNumber(0, 9) && (
+                            <div className="card-image-promoted">Promoted</div>
+                          )}
+                          {getRandonNumber(1, 9) % 2 === 0 && (
+                            <div className="card-image-pro-discount">
+                              Pro extra 10% OFF
+                            </div>
+                          )}
+                          {getRandonNumber(1, 9) % 2 === 0 && (
+                            <div className="card-image-normal-discount">
+                              {randomDiscount(5, 50)}% OFF
+                            </div>
+                          )}
+                          <div className="card-image-delivery-time">
+                            {getRandonNumber(15, 60)} min
+                          </div>
+                        </div>
+                        <div className="card-content">
+                          <div className="card-content-heading">
+                            <div className="card-content-title">
+                              <span className="card-content-text">
+                                {rest.restaurant_name}
+                              </span>
+                              <span className="card-content-rating">
+                                {rest.average_rating}{" "}
+                                <i className="fas fa-star"></i>
+                              </span>
+                            </div>
+                          </div>
+                          <div className="card-content-body">
+                            <div className="card-content-subtitle">
+                              {rest.cuisines.map((cus) => {
+                                return <span>{cus.cuisine_name}&nbsp;</span>;
+                              })}
+                            </div>
+                            <div className="card-content-price">
+                              ₹{rest.cost} for two
+                            </div>
+                          </div>
+                          <hr />
+                        </div>
 
-                  <div className="card-footer">
-                    <img
-                      src="https://i.ibb.co/vsDPHyk/arrow-up.webp"
-                      className="img-footer-arrow"
-                      alt="arrow"
-                    />
-                    <span className="img-footer-text">
-                      1550+ orders placed from here recently
-                    </span>
-                    <img
-                      src="https://i.ibb.co/VWWyMG8/carditem.webp"
-                      className="img-footer-delivery"
-                      alt="delivery"
-                    />
-                  </div>
-                </div>
-                <div className="single-card">
-                  <div className="card-image-wrapper">
-                    <img
-                      src="https://i.ibb.co/L96hXCb/La-pino-pizza.webp"
-                      alt="La-pino-pizza"
-                      className="card-image"
-                    />
-                    <div className="card-image-pro-discount">
-                      Pro extra 10% OFF
-                    </div>
-                    <div className="card-image-normal-discount">50% OFF</div>
-                    <div className="card-image-delivery-time">41 min</div>
-                  </div>
-                  <div className="card-content">
-                    <div className="card-content-heading">
-                      <div className="card-content-title">
-                        <span className="card-content-text">
-                          {" "}
-                          La Pino'z Pizza{" "}
-                        </span>
-                        <span className="card-content-rating">
-                          4.0 <i className="fas fa-star"></i>
-                        </span>
+                        <div className="card-footer">
+                          <img
+                            src="https://i.ibb.co/vsDPHyk/arrow-up.webp"
+                            className="img-footer-arrow"
+                            alt="arrow"
+                          />
+                          <span className="img-footer-text">
+                            {getRandonNumber(100, 1000)}+ orders placed from
+                            here recently
+                          </span>
+                          <img
+                            src="https://i.ibb.co/VWWyMG8/carditem.webp"
+                            className="img-footer-delivery"
+                            alt="delivery"
+                          />
+                        </div>
                       </div>
-                    </div>
-                    <div className="card-content-body">
-                      <div className="card-content-subtitle">
-                        Pizza, Italian, Fast Food, Pasta
-                      </div>
-                      <div className="card-content-price">₹150 for one</div>
-                    </div>
-                    <hr />
-                  </div>
-                  <div className="card-footer">
-                    <img
-                      src="https://i.ibb.co/vsDPHyk/arrow-up.webp"
-                      className="img-footer-arrow"
-                      alt="arrow"
-                    />
-                    <span className="img-footer-text">
-                      6725+ orders placed from here recently
-                    </span>
-                    <img
-                      src="https://i.ibb.co/VWWyMG8/carditem.webp"
-                      className="img-footer-delivery"
-                      alt="delivery"
-                    />
-                  </div>
-                </div>
-                <div className="single-card">
-                  <div className="card-image-wrapper">
-                    <img
-                      src="https://i.ibb.co/jV3LWMD/owl-is-well.webp"
-                      alt="owl-is-well"
-                      className="card-image"
-                    />
-                    <div className="card-image-pro-discount">
-                      Pro extra 15% OFF
-                    </div>
-                    <div className="card-image-normal-discount">50% OFF</div>
-                    <div className="card-image-delivery-time">44 min</div>
-                  </div>
-                  <div className="card-content">
-                    <div className="card-content-heading">
-                      <div className="card-content-title">
-                        <span className="card-content-text"> Owl is Well </span>
-                        <span className="card-content-rating">
-                          4.1 <i className="fas fa-star"></i>
-                        </span>
-                      </div>
-                    </div>
-                    <div className="card-content-body">
-                      <div className="card-content-subtitle">
-                        Italian, Pizza, Burger, Fast Food, Desserts, Beverages
-                      </div>
-                      <div className="card-content-price">₹150 for one</div>
-                    </div>
-                    <hr />
-                  </div>
-                  <div className="card-footer">
-                    <img
-                      src="https://i.ibb.co/vsDPHyk/arrow-up.webp"
-                      className="img-footer-arrow"
-                      alt="arrow"
-                    />
-                    <span className="img-footer-text">
-                      1375+ orders placed from here recently
-                    </span>
-                    <img
-                      src="https://i.ibb.co/VWWyMG8/carditem.webp"
-                      className="img-footer-delivery"
-                      alt="delivery"
-                    />
-                  </div>
-                </div>
-                <div className="single-card">
-                  <div className="card-image-wrapper">
-                    <img
-                      src="https://i.ibb.co/YdZk5zW/cake.jpg"
-                      alt="card-img"
-                      className="card-image"
-                    />
-                    <div className="card-image-promoted">Promoted</div>
-                    <div className="card-image-normal-discount">20% OFF</div>
-                    <div className="card-image-delivery-time">32 min</div>
-                  </div>
-                  <div className="card-content">
-                    <div className="card-content-heading">
-                      <div className="card-content-title">
-                        <span className="card-content-text">
-                          Nathu's pastry shop
-                        </span>
-                        <span className="card-content-rating">
-                          4.1 <i className="fas fa-star"></i>
-                        </span>
-                      </div>
-                    </div>
-                    <div className="card-content-body">
-                      <div className="card-content-subtitle">
-                        Fast Food, Beverages
-                      </div>
-                      <div className="card-content-price">₹100 for one</div>
-                    </div>
-                    <hr />
-                  </div>
-                  <div className="card-footer">
-                    <img
-                      src="https://i.ibb.co/vsDPHyk/arrow-up.webp"
-                      className="img-footer-arrow"
-                      alt="arrow"
-                    />
-                    <span className="img-footer-text">
-                      1700+ orders placed from here recently
-                    </span>
-                    <img
-                      src="https://i.ibb.co/VWWyMG8/carditem.webp"
-                      className="img-footer-delivery"
-                      alt="delivery"
-                    />
-                  </div>
-                </div>
-                <div className="single-card">
-                  <div className="card-image-wrapper">
-                    <img
-                      src="https://i.ibb.co/jV3LWMD/owl-is-well.webp"
-                      alt="owl-is-well"
-                      className="card-image"
-                    />
-                    <div className="card-image-pro-discount">
-                      Pro extra 15% OFF
-                    </div>
-                    <div className="card-image-normal-discount">50% OFF</div>
-                    <div className="card-image-delivery-time">44 min</div>
-                  </div>
-                  <div className="card-content">
-                    <div className="card-content-heading">
-                      <div className="card-content-title">
-                        <span className="card-content-text"> Owl is Well </span>
-                        <span className="card-content-rating">
-                          4.1 <i className="fas fa-star"></i>
-                        </span>
-                      </div>
-                    </div>
-                    <div className="card-content-body">
-                      <div className="card-content-subtitle">
-                        Italian, Pizza, Burger, Fast Food, Desserts, Beverages
-                      </div>
-                      <div className="card-content-price">₹150 for one</div>
-                    </div>
-                    <hr />
-                  </div>
-                  <div className="card-footer">
-                    <img
-                      src="https://i.ibb.co/vsDPHyk/arrow-up.webp"
-                      className="img-footer-arrow"
-                      alt="arrow"
-                    />
-                    <span className="img-footer-text">
-                      1375+ orders placed from here recently
-                    </span>
-                    <img
-                      src="https://i.ibb.co/VWWyMG8/carditem.webp"
-                      className="img-footer-delivery"
-                      alt="delivery"
-                    />
-                  </div>
-                </div>
-                <div className="single-card">
-                  <div className="card-image-wrapper">
-                    <img
-                      src="https://i.ibb.co/YdZk5zW/cake.jpg"
-                      alt="card-img"
-                      className="card-image"
-                    />
-                    <div className="card-image-promoted">Promoted</div>
-                    <div className="card-image-normal-discount">20% OFF</div>
-                    <div className="card-image-delivery-time">32 min</div>
-                  </div>
-                  <div className="card-content">
-                    <div className="card-content-heading">
-                      <div className="card-content-title">
-                        <span className="card-content-text">
-                          Nathu's pastry shop
-                        </span>
-                        <span className="card-content-rating">
-                          4.1 <i className="fas fa-star"></i>
-                        </span>
-                      </div>
-                    </div>
-                    <div className="card-content-body">
-                      <div className="card-content-subtitle">
-                        Fast Food, Beverages
-                      </div>
-                      <div className="card-content-price">₹100 for one</div>
-                    </div>
-                    <hr />
-                  </div>
-                  <div className="card-footer">
-                    <img
-                      src="https://i.ibb.co/vsDPHyk/arrow-up.webp"
-                      className="img-footer-arrow"
-                      alt="arrow"
-                    />
-                    <span className="img-footer-text">
-                      1700+ orders placed from here recently
-                    </span>
-                    <img
-                      src="https://i.ibb.co/VWWyMG8/carditem.webp"
-                      className="img-footer-delivery"
-                      alt="delivery"
-                    />
-                  </div>
-                </div>
+                    );
+                  })}
               </div>
             </div>
           </div>

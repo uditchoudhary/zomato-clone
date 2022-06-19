@@ -12,7 +12,7 @@ function App() {
         <TopHeader />
         <Routes>
           <Route index element={<LandingPage />} />
-          <Route path="listing" element={<ListingPage />} />
+          <Route path="listing/:mealtype_id" element={<ListingPage />} />
           <Route path="/details/restaurant/:restId" element={<Details />} />
           <Route path="/placeOrder/:restName" element={<PlaceOrder />} />
         </Routes>
