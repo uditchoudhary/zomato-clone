@@ -2,6 +2,7 @@ import "./LandingPage.css";
 import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { instance as API } from "../../services/axiosConfig";
+import FixedHeader from "../../components/FixedHeader";
 
 const LandingPage = () => {
   const [mealTypes, setMealTypes] = useState();
@@ -16,6 +17,7 @@ const LandingPage = () => {
   }, []);
   return (
     <>
+      <FixedHeader />
       <div className="container quick-search">
         <div className="row">
           <div className="col">
@@ -38,9 +40,7 @@ const LandingPage = () => {
                       </div>
                       <div className="tileComponent2">
                         <div className="componentHeading">
-                          <Link to="/listing">
-                            {mealType.mealtype}
-                          </Link>
+                          <Link to="/listing">{mealType.mealtype}</Link>
                         </div>
                         <div className="componentSubHeading">
                           {mealType.content}
