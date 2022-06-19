@@ -1,5 +1,7 @@
 import { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
+import CostFilter from "../../components/filters/CostFilter";
+import CuisineFilter from "../../components/filters/CuisineFilter";
 import { instance as API } from "../../services/axiosConfig";
 import "./ListingPage.css";
 
@@ -8,15 +10,28 @@ const ListingPage = () => {
   const navigate = useNavigate();
   const [restaurants, setRestaurants] = useState([]);
   const [pageLoading, setPageLoading] = useState(false);
+  const [costFilter, setCostFilter] = useState();
+  const [cuisineFilter, setCuisineFilter] = useState();
   useEffect(() => {
     const mt_id = param.mealtype_id;
     setPageLoading(true);
-    API.get(`restaurants?mealtype_id=${mt_id}`)
-      // API.get(`restaurants?mealtype_id=2`)
+    let params = {};
+    if (costFilter) {
+      params.hcost = costFilter.hcost;
+      params.lcost = costFilter.lcost;
+    }
+
+    if (cuisineFilter) {
+      params.cuisineId = cuisineFilter;
+    }
+
+    API.get(`filters/${mt_id}`, {
+      params,
+    })
       .then((res) => setRestaurants(res.data))
       .catch((err) => console.log(err));
     setPageLoading(false);
-  }, []);
+  }, [costFilter, cuisineFilter]);
   // getting random number for dummy values
   const getRandonNumber = (min, max) => {
     return Math.floor(Math.random() * (max - min)) + min;
@@ -32,143 +47,34 @@ const ListingPage = () => {
   }
   return (
     <>
-      <div className="container">
+      {console.log(costFilter)}
+      <div className="container-fluid">
         <div className="mainContent d-flex justify-content-end">
           <div id="filter">
             <div className="filter-heading">
               Filter
               <hr />
             </div>
-            <form>
-              <div className="filter-cuisine">
-                <div className="filter-subtitle">Cuisine Filter</div>
-                <div className="filter-option-group">
-                  <div className="filter-option">
-                    <input
-                      type="radio"
-                      id="all-cuisine"
-                      name="filter-cuisine"
-                      value="All"
-                    />
-                    <label htmlFor="all-cuisine">All</label>
-                  </div>
-                  <div className="filter-option">
-                    <input
-                      type="radio"
-                      id="ni-cuisine"
-                      name="filter-cuisine"
-                      value="North Indian"
-                    />
-                    <label htmlFor="ni-cuisine">North Indian</label>
-                  </div>
-                  <div className="filter-option">
-                    <input
-                      type="radio"
-                      id="si-cuisine"
-                      name="filter-cuisine"
-                      value="South Indian"
-                    />
-                    <label htmlFor="si-cuisine">South Indian</label>
-                  </div>
-                  <div className="filter-option">
-                    <input
-                      type="radio"
-                      id="chinese-cuisine"
-                      name="filter-cuisine"
-                      value="Chinese"
-                    />
-                    <label htmlFor="chinese-cuisine">Chinese</label>
-                  </div>
-                  <div className="filter-option">
-                    <input
-                      type="radio"
-                      id="ff-cuisine"
-                      name="filter-cuisine"
-                      value="Fast Food"
-                    />
-                    <label htmlFor="ff-cuisine">Fast Food</label>
-                  </div>
-                  <div className="filter-option">
-                    <input
-                      type="radio"
-                      id="sf-cuisine"
-                      name="filter-cuisine"
-                      value="Street Food"
-                    />
-                    <label htmlFor="sf-cuisine">Street Food</label>
-                  </div>
-                </div>
-              </div>
-              <hr style={{ width: "80%", textAlign: "center" }} />
-              <div className="filter-cost">
-                <div className="filter-subtitle">Cost Filter</div>
-                <div className="filter-option-group">
-                  <div className="filter-option">
-                    <input
-                      type="checkbox"
-                      id="all-cost"
-                      name="filter-cost"
-                      value="All"
-                    />
-                    <label htmlFor="all-cost">All</label>
-                  </div>
-                  <div className="filter-option">
-                    <input
-                      type="checkbox"
-                      id="cost1"
-                      name="filter-cost"
-                      value="All"
-                    />
-                    <label htmlFor="cost1">100-300</label>
-                  </div>
-                  <div className="filter-option">
-                    <input
-                      type="checkbox"
-                      id="cost2"
-                      name="filter-cost"
-                      value="All"
-                    />
-                    <label htmlFor="cost2">301-500</label>
-                  </div>
-                  <div className="filter-option">
-                    <input
-                      type="checkbox"
-                      id="cost3"
-                      name="filter-cost"
-                      value="All"
-                    />
-                    <label htmlFor="cost3">501-700</label>
-                  </div>
-                  <div className="filter-option">
-                    <input
-                      type="checkbox"
-                      id="cost4"
-                      name="filter-cost"
-                      value="All"
-                    />
-                    <label htmlFor="cost4">701-1000</label>
-                  </div>
-                  <div className="filter-option">
-                    <input
-                      type="checkbox"
-                      id="cost5"
-                      name="filter-cost"
-                      value="All"
-                    />
-                    <label htmlFor="cost5">1001-3000</label>
-                  </div>
-                </div>
-              </div>
-            </form>
+            {/* <form> */}
+            <CuisineFilter
+              restCuisineFilter={(cuisineFilter) =>
+                setCuisineFilter(cuisineFilter)
+              }
+            />
+            <hr style={{ width: "80%", textAlign: "center" }} />
+            <CostFilter
+              restCostFilter={(costFilter) => setCostFilter(costFilter)}
+            />
+            {/* </form> */}
           </div>
           <div id="card">
             <div className="listing">
               {/* <div className="listing-location-heading">
                 Delhi NCR Resturants
               </div> */}
-              <div className=" d-flex flex-wrap justify-content-between">
+              <div className=" d-flex flex-wrap justify-content-center">
                 {console.log(restaurants)}
-                {restaurants.length > 0 &&
+                {restaurants.length > 0 ? (
                   restaurants.map((rest) => {
                     return (
                       <div
@@ -206,8 +112,8 @@ const ListingPage = () => {
                                 {rest.restaurant_name}
                               </span>
                               <span className="card-content-rating">
-                                {rest.average_rating}{" "}
-                                <i className="fas fa-star"></i>
+                                {rest.average_rating}
+                                &nbsp;&#9733;
                               </span>
                             </div>
                           </div>
@@ -221,7 +127,7 @@ const ListingPage = () => {
                               ₹{rest.cost} for two
                             </div>
                           </div>
-                          <hr />
+                          <div className="card-address">{rest.address}</div>
                         </div>
 
                         <div className="card-footer">
@@ -242,7 +148,13 @@ const ListingPage = () => {
                         </div>
                       </div>
                     );
-                  })}
+                  })
+                ) : (
+                  <div className="no-item-display">
+                    <h3>No Resturants meets the filter selection</h3>
+                    <h5>Try changing filter options</h5>
+                  </div>
+                )}
               </div>
             </div>
           </div>

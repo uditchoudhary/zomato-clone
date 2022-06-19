@@ -26,18 +26,18 @@ header {
 .mainContent {
   height: fit-content;
   width: 100%;
-  border: 1px solid black;
+  /* border: 1px solid black; */
 }
 #filter {
   height: auto;
   width: 22%;
-  border: 2px solid red;
+  border: 1px solid red;
   float: left;
 }
 #card {
   height: 100%;
   width: 100%;
-  border: 2px solid orange;
+  border: 1px solid orange;
   margin-left: 2%;
   float: left;
 }
@@ -58,6 +58,11 @@ footer {
 .listing {
   margin-left: 1%;
   width: 100%;
+  /* min-height: 500px; */
+}
+
+.no-item-display {
+  padding: 100px;
 }
 
 .cards {
@@ -79,6 +84,12 @@ footer {
   box-shadow: 6px 7px 18px 3px rgba(0, 0, 0, 0.43);
   -webkit-box-shadow: 6px 7px 18px 3px rgba(0, 0, 0, 0.43);
   -moz-box-shadow: 6px 7px 18px 3px rgba(0, 0, 0, 0.43);
+}
+.card-address {
+  max-width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 .card-image-wrapper {
   height: 250px;

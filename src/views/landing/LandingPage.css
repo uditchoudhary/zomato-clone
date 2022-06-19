@@ -25,6 +25,12 @@
   line-height: 27px;
 }
 
+#profile {
+    background: white;
+    width: fit-content;
+    padding: 10px
+}
+
 #profile img {
   width: 27px;
   height: 27px;
