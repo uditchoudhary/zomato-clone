@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { instance as API } from "../../services/axiosConfig";
-import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import "./Details.css";
 import Menu from "./Menu";
@@ -24,6 +23,7 @@ const Details = () => {
     API.get("/menu/" + restId)
       .then((res) => setMenu(res.data))
       .catch((err) => console.log(err));
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
   const proceed = () => {
     console.log("Setting user items", userItems)
@@ -78,9 +78,14 @@ const Details = () => {
             <h2>Available</h2>
 
             <div>
-              <Link to={`/listing/`} className="btn btn-back">
+              {console.log(details)}
+              <button
+                // to={`/listing/`}
+                onClick={() => navigate(-1)}
+                className="btn btn-back"
+              >
                 Back
-              </Link>
+              </button>
               {/* <button className="btn btn-checkout">Add To Cart</button> */}
               <button className="btn btn-proceed" onClick={proceed}>
                 Checkout

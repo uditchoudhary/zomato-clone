@@ -31,7 +31,7 @@ const ListingPage = () => {
       .then((res) => setRestaurants(res.data))
       .catch((err) => console.log(err));
     setPageLoading(false);
-  }, [costFilter, cuisineFilter]);
+  }, [costFilter, cuisineFilter, param.mealtype_id]);
   // getting random number for dummy values
   const getRandonNumber = (min, max) => {
     return Math.floor(Math.random() * (max - min)) + min;

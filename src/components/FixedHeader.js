@@ -1,4 +1,3 @@
-import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { instance as API } from "../services/axiosConfig";
 import { useNavigate } from "react-router-dom";
