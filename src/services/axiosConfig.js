@@ -10,7 +10,8 @@ authInstance.defaults.headers = {
 authInstance.defaults.withCredentials = true;
 
 const instance = axios.create({
-  baseURL: "http://localhost:9700/",
+  baseURL: "https://uc-zomato-backend.herokuapp.com/",
+  // baseURL: "http://localhost:9700/",
 });
 
 export { authInstance, instance };
