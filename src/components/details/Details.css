@@ -73,3 +73,7 @@ h2 {
     font-size: 20px;
     background-color: rgb(237, 120, 120)
 }
+
+.menu-container {
+    border: 0.1px solid black;
+}

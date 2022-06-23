@@ -2,6 +2,7 @@ import { useState } from "react";
 
 const Menu = ({ menudata, finalOrder, userItems }) => {
   const [orders, setOrders] = useState([]);
+
   const placeOrder = (id) => {
     let updatedOrders = orders;
     if (!orders.includes(id)) {
@@ -13,7 +14,7 @@ const Menu = ({ menudata, finalOrder, userItems }) => {
 
   const removeOrder = (id) => {
     let updatedOrders = orders;
-    if (!orders.includes(id)) {
+    if (orders.includes(Number(id))) {
       updatedOrders = orders.filter((item) => item !== id);
       setOrders(updatedOrders);
     }
@@ -68,14 +69,20 @@ const Menu = ({ menudata, finalOrder, userItems }) => {
       });
     }
   };
-
   return (
     <>
-      <div>
-        <div className="col-12 bg-success">
-          <h1>Item Added</h1>
-          Item Number {renderCart(orders)} Added
-        </div>
+      <div className="menu-container container">
+        {console.log("orders", orders)}
+        {orders.length > 0 ? (
+          <div className="col-12 my-2">
+            <h1>Items in the cart</h1>
+            Item Number {renderCart(orders)} Added
+          </div>
+        ) : (
+          <div className="col-12 my-2">
+            <h1>No item in the cart</h1>
+          </div>
+        )}
         <div className="col-12 bg-info">{renderMenu(menudata)}</div>
       </div>
     </>
