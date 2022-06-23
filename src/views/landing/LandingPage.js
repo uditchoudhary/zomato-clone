@@ -2,7 +2,7 @@ import "./LandingPage.css";
 import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { instance as API } from "../../services/axiosConfig";
-import FixedHeader from "../../components/FixedHeader";
+import FixedHeader from "../../components/header/FixedHeader";
 
 const LandingPage = () => {
   const [mealTypes, setMealTypes] = useState();

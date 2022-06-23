@@ -1,7 +1,7 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import PlaceOrder from "./components/bookings/PlaceOrder";
 import Details from "./components/details/Details";
-import TopHeader from "./components/TopHeader";
+import TopHeader from "./components/header/TopHeader";
 import LandingPage from "./views/landing/LandingPage";
 import ListingPage from "./views/listing/ListingPage";
 
