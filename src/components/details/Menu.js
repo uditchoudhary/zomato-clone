@@ -29,44 +29,59 @@ const Menu = ({ menudata, finalOrder, userItems }) => {
   };
   const renderMenu = (menudata) => {
     if (menudata) {
-      return menudata.map((item) => {
-        return (
-          <>
-            <div key={item._id} className="row justify-content-end">
-              <div className="col">
-                <b>{item.menu_id}</b> &nbsp;
-                <img
-                  src={item.menu_image}
-                  style={{ width: 80, height: 80 }}
-                  alt="menu"
-                />
-                &nbsp;
-                {item.menu_name}- Rs.{item.menu_price}
-              </div>
-              <div className="col-3">
-                <button
-                  className="btn btn-success"
-                  onClick={() => {
-                    placeOrder(item.menu_id);
-                  }}
-                >
-                  <span>+</span>
-                </button>{" "}
-                &nbsp;
-                <button
-                  className="btn btn-danger"
-                  onClick={() => {
-                    removeOrder(item.menu_id);
-                  }}
-                >
-                  <span>-</span>
-                </button>
-              </div>
-            </div>
-            <hr />
-          </>
-        );
-      });
+      return (
+        <div>
+          <table class="table">
+            <thead>
+              <tr>
+                <th scope="col">Item #</th>
+                <th scope="col"></th>
+                <th scope="col">Description</th>
+                <th scope="col">Price</th>
+                <th scope="col"></th>
+              </tr>
+            </thead>
+            <tbody>
+              {menudata.map((item) => {
+                return (
+                  <tr key={item._id}>
+                    <th scope="row">{item.menu_id}</th>
+                    <td>
+                      <img
+                        src={item.menu_image}
+                        style={{ width: 80, height: 80 }}
+                        alt="menu"
+                      />
+                    </td>
+                    <td>{item.menu_name}</td>
+                    <td>Rs.{item.menu_price}</td>
+                    <td>
+                      <button
+                        className="btn btn-success"
+                        onClick={() => {
+                          placeOrder(item.menu_id);
+                        }}
+                      >
+                        <span>+</span>
+                      </button>{" "}
+                      &nbsp;
+                      <button
+                        className="btn btn-danger"
+                        onClick={() => {
+                          removeOrder(item.menu_id);
+                        }}
+                      >
+                        <span>-</span>
+                      </button>
+                    </td>
+                    <hr />
+                  </tr>
+                );
+              })}
+            </tbody>
+          </table>
+        </div>
+      );
     }
   };
   return (

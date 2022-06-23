@@ -9,7 +9,7 @@
     height: 400px;
     width: 40%;
     float: left;
-    border: 5px groove gray
+    /* border: 5px groove gray */
 }
 
 .imgDiv>img {
@@ -18,7 +18,8 @@
 }
 
 .contentDiv {
-    height: 500px;
+    height: auto;
+    margin-bottom: 50px;
     width: 55%;
     margin-left: 2%;
     float: left;
@@ -36,8 +37,8 @@
 }
 
 .imgIcon {
-    height: 100px;
-    width: 100px;
+    height: 30px;
+    width: 30px;
     margin-left: 2%
 }
 
@@ -75,5 +76,5 @@ h2 {
 }
 
 .menu-container {
-    border: 0.1px solid black;
+    /* border: 0.1px solid black; */
 }

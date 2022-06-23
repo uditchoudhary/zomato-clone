@@ -10,10 +10,8 @@ const Details = () => {
   const restId = params.restId;
   const [details, setDetails] = useState();
   const [fetchError, setFetchError] = useState();
-  const [userItems, setUserItems] = useState(
-    sessionStorage.getItem("menu")
-  );
-  console.log("from session storage",userItems)
+  const [userItems, setUserItems] = useState(sessionStorage.getItem("menu"));
+  console.log("from session storage", userItems);
   const [menu, setMenu] = useState();
   const navigate = useNavigate();
   useEffect(() => {
@@ -24,40 +22,56 @@ const Details = () => {
     API.get("/menu/" + restId)
       .then((res) => setMenu(res.data))
       .catch((err) => setFetchError(err.response.data));
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
   const proceed = () => {
-    console.log("Setting user items", userItems)
+    console.log("Setting user items", userItems);
     sessionStorage.setItem("menu", userItems);
     navigate(`/placeOrder/${details.restaurant_name}`);
   };
   const addToCart = (data) => {
-    console.log("data received",data)
+    console.log("data received", data);
     setUserItems(data);
+  };
+  // getting random number for dummy values
+  const getRandonNumber = (min, max) => {
+    return Math.floor(Math.random() * (max - min)) + min;
   };
   if (details) {
     return (
-      <>
-        <div id="mainContant" className="row">
+      <div className="container">
+        <div className="row">
           <div className="imgDiv">
             <img src={details.restaurant_thumb} alt="snacks" />
           </div>
           <div className="contentDiv">
             <h1>{details.restaurant_name}</h1>
-            <span>231 Customers Rating is {details.rating_text}</span>
-            <h3>
-              <del>Old Price: 1000</del>
-            </h3>
-            <h3>New Price: Rs.{details.cost}</h3>
-            <h3>Best Taste of Fresh Chai with Samosa At your Door or DineIn</h3>
+            <span className="text-info">
+              {getRandonNumber(100, 300)}+ Customer rated it{" "}
+              {details.rating_text}
+            </span>
+            <hr />
+            <h5>
+              Cost for two &nbsp;
+              <del>
+                &#x20B9;
+                {getRandonNumber(details.cost + 50, details.cost + 250)}
+              </del>
+              &nbsp; &#x20B9;{details.cost}
+            </h5>
+            <hr />
+
+            <h4>
+              Best Taste of {details.restaurant_name} At your Door or DineIn
+            </h4>
             <div className="feature_container">
-              <div className="feature">
+              <div className="feature d-flex justify-content-center">
                 <img
                   src="https://i.ibb.co/wJvrhYg/veg.png"
                   alt="veg"
                   className="imgIcon"
                 />
-                <p>Pure Veg</p>
+                {/* <p>Pure Veg</p> */}
               </div>
               <div className="feature">
                 <img
@@ -65,7 +79,7 @@ const Details = () => {
                   alt="veg"
                   className="imgIcon"
                 />
-                <p>Fully Senatized</p>
+                {/* <p>Fully Senatized</p> */}
               </div>
               <div className="feature">
                 <img
@@ -73,11 +87,10 @@ const Details = () => {
                   alt="delivery"
                   className="imgIcon"
                 />
-                <p>Free Delivery</p>
+                {/* <p>Free Delivery</p> */}
               </div>
             </div>
-            <h2>Available</h2>
-
+            <h2 className="my-4">Delivering Now</h2>
             <div>
               {console.log(details)}
               <button
@@ -104,10 +117,10 @@ const Details = () => {
             />
           </div>
         </div>
-      </>
+      </div>
     );
   } else {
-    fetchError &&  ( <h1>Failed while fetching</h1>)
+    fetchError && <h1>Failed while fetching</h1>;
     return <h1>Loading</h1>;
   }
 };
