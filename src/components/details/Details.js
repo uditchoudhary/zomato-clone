@@ -9,7 +9,6 @@ const Details = () => {
   const params = useParams();
   const restId = params.restId;
   const [details, setDetails] = useState();
-  const [fetchError, setFetchError] = useState();
   const [userItems, setUserItems] = useState(sessionStorage.getItem("menu"));
   console.log("from session storage", userItems);
   const [menu, setMenu] = useState();
@@ -21,7 +20,7 @@ const Details = () => {
       .catch((err) => console.log(err));
     API.get("/menu/" + restId)
       .then((res) => setMenu(res.data))
-      .catch((err) => setFetchError(err.response.data));
+      .catch((err) => console.log(err.response.data));
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
   const proceed = () => {
@@ -120,7 +119,6 @@ const Details = () => {
       </div>
     );
   } else {
-    fetchError && <h1>Failed while fetching</h1>;
     return <h1>Loading</h1>;
   }
 };
