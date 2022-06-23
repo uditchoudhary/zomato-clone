@@ -16,7 +16,9 @@
     height: 400px;
     width: 100%;
 }
-
+.spinner-container{
+    height: 100vh;
+}
 .contentDiv {
     height: auto;
     margin-bottom: 50px;

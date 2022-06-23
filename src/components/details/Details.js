@@ -4,6 +4,7 @@ import { instance as API } from "../../services/axiosConfig";
 import { useNavigate } from "react-router-dom";
 import "./Details.css";
 import Menu from "./Menu";
+import { Spinner } from "../Spinner";
 
 const Details = () => {
   const params = useParams();
@@ -119,7 +120,7 @@ const Details = () => {
       </div>
     );
   } else {
-    return <h1>Loading</h1>;
+    return <Spinner />;
   }
 };
 
